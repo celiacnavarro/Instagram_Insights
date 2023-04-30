@@ -37,6 +37,9 @@ Instagram_insights
 │   │   ...
 
  ```
+ ## Database Diagram
+ 
+ ![Database Diagram](https://github.com/celiacnavarro/Instagram_Insights/blob/main/database_diagram.png "Database Diagram")
  
  ## Examples of SQL Queries for Analyzing Instagram Data
  
