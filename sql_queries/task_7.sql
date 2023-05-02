@@ -1,5 +1,10 @@
 -- Write an SQL query to solve the given problem statement.
--- Total numbers of users who have posted at least one time
+-- Total Posts by users (longer versionof SELECT COUNT(*)FROM photos)
 
-SELECT COUNT(DISTINCT user_id) AS total_number_of_users_with_posts
-FROM photos
+SELECT SUM(post_count) AS total_posts
+FROM (
+  SELECT COUNT(*) AS post_count
+  FROM photos
+  GROUP BY user_id
+) subquery;
+
