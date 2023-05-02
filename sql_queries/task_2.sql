@@ -1,11 +1,15 @@
 -- Write an SQL query to solve the given problem statement.
--- We want to target our inactive users with an email campaign. Find the users who have never posted a photo.
+-- What day of the week do most users register on? 
+-- We need to figure out when to schedule an ad campgain
 
-SELECT username
-FROM users
-LEFT JOIN 
-    photos 
-ON 
-    users.id = photos.user_id 
-WHERE 
-    photos.id IS NULL;
+SELECT 
+    DAYNAME(created_at) AS day_of_week, 
+    COUNT(*) AS count
+FROM 
+    users 
+GROUP BY 
+    day_of_week 
+ORDER BY 
+    count DESC 
+LIMIT 
+    1;
