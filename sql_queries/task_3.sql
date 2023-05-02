@@ -1,20 +1,11 @@
 -- Write an SQL query to solve the given problem statement.
--- We're running a new contest to see who can get the most likes on a single photo. WHO WON?
+-- We want to target our inactive users with an email campaign. Find the users who have never posted a photo.
 
-SELECT users.username, photos.id, photos.image_url, COUNT(*) AS Total_Likes
-FROM 
-    photos 
-JOIN 
-    users 
-ON 
-    photos.user_id = users.id 
+SELECT username
+FROM users
 LEFT JOIN 
-    likes 
+    photos 
 ON 
-    photos.id = likes.photo_id 
-GROUP BY 
-    photos.id 
-ORDER BY 
-    COUNT(*) DESC 
-LIMIT 
-    1;
+    users.id = photos.user_id 
+WHERE 
+    photos.id IS NULL;
