@@ -1,4 +1,20 @@
 -- Write an SQL query to solve the given problem statement.
--- Our Investors want to know...How many times does the average user post? (total number of photos/total number of users)
+-- We're running a new contest to see who can get the most likes on a single photo. WHO WON?
 
-SELECT ROUND((SELECT COUNT(*)FROM photos)/(SELECT COUNT(*) FROM users),2)
+SELECT users.username, photos.id, photos.image_url, COUNT(*) AS Total_Likes
+FROM 
+    photos 
+JOIN 
+    users 
+ON 
+    photos.user_id = users.id 
+LEFT JOIN 
+    likes 
+ON 
+    photos.id = likes.photo_id 
+GROUP BY 
+    photos.id 
+ORDER BY 
+    COUNT(*) DESC 
+LIMIT 
+    1;
