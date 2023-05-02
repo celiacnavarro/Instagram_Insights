@@ -1,9 +1,10 @@
 -- Write an SQL query to solve the given problem statement.
--- We have a small problem with bots on our site. Find users who have liked every single photo on the site
+-- A brand wants to know which hashtags to use in a post. What are the top 5 most commonly used hashtags?
 
-SELECT users.id, users.username, COUNT(DISTINCT photo_id) AS total_likes_by_user
-FROM users
-JOIN likes
-ON users.id = likes.user_id
-GROUP BY likes.user_id
-HAVING COUNT(DISTINCT photo_id) = (SELECT COUNT(*) FROM photos);
+SELECT tags.tag_name, COUNT(*) AS count
+FROM photo_tags
+JOIN tags 
+ON photo_tags.tag_id = tags.id 
+GROUP BY photo_tags.tag_id
+ORDER BY count DESC
+
